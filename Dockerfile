@@ -13,6 +13,13 @@ COPY ./app/package*.json ./
 RUN npm ci --omit=dev
 
 COPY ./app .
+# NEW
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+# NEW
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 EXPOSE 3000
 
+# NEW
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["node", "server.js"]
